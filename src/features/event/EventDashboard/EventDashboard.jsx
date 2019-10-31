@@ -14,17 +14,17 @@ const eventsFromDashboard = [
     city: 'London, UK',
     venue: "Tower of London, St Katharine's & Wapping, London",
     hostedBy: 'Bob',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+    hostPhotoURL: 'https://randomuser.me/api/portraits/women/20.jpg',
     attendees: [
       {
         id: 'a',
         name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+        photoURL: 'https://randomuser.me/api/portraits/women/20.jpg'
       },
       {
         id: 'b',
         name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+        photoURL: 'https://randomuser.me/api/portraits/women/16.jpg'
       }
     ]
   },
@@ -38,17 +38,17 @@ const eventsFromDashboard = [
     city: 'London, UK',
     venue: 'Punch & Judy, Henrietta Street, London, UK',
     hostedBy: 'Tom',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+    hostPhotoURL: 'https://randomuser.me/api/portraits/women/22.jpg',
     attendees: [
       {
         id: 'b',
         name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+        photoURL: 'https://randomuser.me/api/portraits/women/22.jpg'
       },
       {
         id: 'a',
         name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+        photoURL: 'https://randomuser.me/api/portraits/women/14.jpg'
       }
     ]
   }
@@ -56,15 +56,28 @@ const eventsFromDashboard = [
 
 
 class EventDashboard extends Component {
+  state={
+    events: eventsFromDashboard,
+    isOpen: false
+  }
+
+  handleIsOpenToggle = () => {
+    this.setState(({isOpen}) => ({
+      isOpen: !isOpen
+    }))
+  }
+
   render() {
+    const {events, isOpen} = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList events={eventsFromDashboard} />
+          <EventList events={events} />
         </Grid.Column>
         <Grid.Column width={6}>
-          <Button positive content='Create Event' />
-          <EventForm />
+          <Button onClick={this.handleIsOpenToggle} positive content='Create Event' />
+          {isOpen && <EventForm cancelFormOpen={this.handleIsOpenToggle} />}
+          
         </Grid.Column>
       </Grid>
     );
