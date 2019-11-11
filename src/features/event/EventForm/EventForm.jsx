@@ -15,15 +15,15 @@ class EventForm extends Component {
     console.log(this.state);
   };
 
-  handleInputChange = evt => {
+  handleInputChange = ({ target: { name, value } }) => {
     this.setState({
-      [evt.target.name]: evt.target.value
+      [name]: value
     });
   };
 
   render() {
     const { cancelFormOpen } = this.props;
-    const { title, date, city, venue, hostedBy } = this.props;
+    const { title, date, city, venue, hostedBy } = this.state;
 
     return (
       <Segment>
