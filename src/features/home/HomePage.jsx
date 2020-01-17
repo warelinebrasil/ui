@@ -1,7 +1,7 @@
 import React from "react";
 import { Segment, Container, Header, Image, Button, Icon } from "semantic-ui-react";
 
-export const HomePage = ({history}) => {
+const HomePage = ({history}) => {
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Container text>
@@ -22,3 +22,5 @@ export const HomePage = ({history}) => {
     </Segment>
   );
 };
+
+export default HomePage
